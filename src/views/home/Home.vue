@@ -46,11 +46,11 @@ import NavBar from 'components/common/navbar/NavBar';
 import TabControl from 'components/content/tabControl/TabControl';
 import GoodsList from 'components/content/goodsList/GoodsList';
 import Scroll from 'components/common/scroll/Scroll';
-import BackTop from 'components/content/backTop/BackTop'
+import BackTop from 'components/content/backTop/BackTop';
 // 网络方法
 import {getHomeMultidata, getHomeGoods} from 'network/home';
-// 工具方法
-import {debounce} from 'common/utils';
+// 混入
+import { itemListenerMixin, backTopMixin } from "common/mixin";
 
 export default {
   name: 'Home',
@@ -74,10 +74,9 @@ export default {
       },
       currentType: ['pop', 'new', 'sell'],
       typeIndex: 0,
-      isBackTopShow: false,
       tabOffsetTop: 0,
+      saveY: 0,
       isTabControlShow: false,
-      saveY: 0
     }
   },
   components: {
@@ -91,6 +90,7 @@ export default {
     Scroll,
     BackTop
   },
+  mixins: [itemListenerMixin, backTopMixin],
   created() {
     // 获取首页轮播图多个数据
     this.getHomeMultidata();
@@ -99,13 +99,6 @@ export default {
     this.getHomeGoods('new');
     this.getHomeGoods('sell');
   },
-  //不要在created的时候调用$ref,挂载后
-  mounted() {
-    const refresh = debounce(this.$refs.scroll.refresh);
-    this.$bus.$on('itemImgLoad', () => {
-      refresh();
-    });
-  },
   activated() {
     this.$refs.scroll.scrollTo(0, this.saveY);
     this.$refs.scroll.refresh();
@@ -113,6 +106,8 @@ export default {
   deactivated() {
     //记录滚动的位置
     this.saveY = this.$refs.scroll.getScrollY();
+    // 去除图片监听事件的scroll刷新
+    this.$bus.$off('itemImgLoad', this.itemImgListener);
   },
   computed: {
     goodsStyle() {
@@ -148,12 +143,9 @@ export default {
       this.$refs.tabControl1.currentIndex = index;
       this.$refs.tabControl2.currentIndex = index;
     },
-    backClick() {
-      this.$refs.scroll.scrollTo(0, 0);
-    },
     contentScroll(position) {
       // 1. backTop组件是否显示
-      this.isBackTopShow = (-position.y) > 1000;
+      this.listenBackTopShow(position);
       // 2. scroll1组件是否显示(实现吸顶效果)
       this.isTabControlShow = (-position.y) > this.tabOffsetTop;
     },

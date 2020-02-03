@@ -1,7 +1,7 @@
 <template>
   <div>
     <swiper>
-      <template #default>
+      <template >
         <swiper-item v-for="item in banners" :key="item.index">
           <template #default>
             <a :href="item.link">
