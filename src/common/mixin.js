@@ -1,6 +1,8 @@
 // 工具方法
 import {debounce} from 'common/utils';
 
+import BackTop from 'components/content/backTop/BackTop.vue'
+
 export const itemListenerMixin = {
   data() {
     return {
@@ -16,6 +18,9 @@ export const itemListenerMixin = {
 }
 
 export const backTopMixin = {
+  components: {
+    BackTop,
+  },
   data() {
     return {
       isBackTopShow: false,

@@ -2,16 +2,17 @@
   <div id="detail">
     <detail-nav-bar class="detail-nav-bar" @navClick="navClick" ref="navBar" />
     <scroll class="scroll" ref="scroll" :probeType="3" @scroll="contentScroll">
+      <p>{{$store.carList}}</p>
       <detail-swiper :topImages="topImages" />
       <detail-base-info :goods="goods" />
       <detail-shop-info :shop="shop" />
-      <detail-img-info :detail-info="detailInfo" @imgLoad="detailImgLoad" />
+      <detail-img-info :detail-info="detailInfo" @imgLoad="detailImgLoad" ref="goodsImg" />
       <detail-param-info :param-info="paramInfo" ref="param" />
       <detail-comment-info :comment-info="commentInfo" ref="comment" />
       <goods-list :list="recommend"  class="list" ref="recommend" />
     </scroll>
     <back-top @click.native="backClick" v-show="isBackTopShow"></back-top>
-    <detail-bottom-bar></detail-bottom-bar>
+    <detail-bottom-bar @addToCart="addToCart"></detail-bottom-bar>
   </div>
 </template>
 
@@ -33,6 +34,8 @@ import BackTop from 'components/content/backTop/BackTop';
 import { Goods, Shop, GoodsParam, getDetailData, getRecommend } from 'network/detail';
 // 混入
 import { itemListenerMixin, backTopMixin } from "common/mixin";
+import { mapActions } from 'vuex'
+
 export default {
   name: 'Detail',
   components: {
@@ -60,7 +63,8 @@ export default {
       commentInfo: {},
       recommend: [],
       themeTopYs: [],
-      curItem: 0
+      curItem: 0,
+      isBottomClick: false
     }
   },
   mixins: [itemListenerMixin, backTopMixin],
@@ -102,9 +106,12 @@ export default {
     this.$bus.$off('itemImgLoad', this.itemImgListener);
   },
   methods: {
+      ...mapActions([
+      'addCart',
+    ]),
     detailImgLoad() {
       this.$refs.scroll.refresh();
-      this.themeTopYs.push(0);
+      this.themeTopYs.push(this.$refs.goodsImg.$el.offsetTop);
       this.themeTopYs.push(this.$refs.param.$el.offsetTop);
       this.themeTopYs.push(this.$refs.comment.$el.offsetTop);
       this.themeTopYs.push(this.$refs.recommend.$el.offsetTop);
@@ -117,22 +124,33 @@ export default {
       const posY = - position.y;
       const len = this.themeTopYs.length;
       this.themeTopYs.forEach((topY,index) => {
-        if ( index < len - 1 && posY >= topY && posY < this.themeTopYs[index + 1]) {
+        if ( 
+          (index < len - 1 && posY >= topY && posY < this.themeTopYs[index + 1]) ||
+          (index === len - 1 && posY >= topY)
+          ) {
           if (this.curItem !== index) {
-            console.log(index);
             this.curItem = index;
             this.$refs.navBar.curItem = index;
           }
-        } else if (index === len - 1 && posY >= topY) {
-           if (this.curItem !== index) {
-            console.log(index);
-            this.curItem = index;
-            this.$refs.navBar.curItem = index;
-          }
-        }
+        } 
       });
-      // 控制回顶按钮显示
+       // 控制回顶按钮显示
       this.listenBackTopShow(position);
+    },
+    async addToCart() {
+      if (this.isBottomClick) {
+        return;
+      }
+      this.isBottomClick = true;
+      const product = {
+        image: this.topImages[0],
+        title: this.goods.title,
+        desc: this.goods.desc,
+        price: this.goods.lowNowPrice,
+        iid: this.iid
+      }
+      const msg = await this.addCart(product);
+      this.$toast.show(msg, () => this.isBottomClick = false);
     }
   },
 }

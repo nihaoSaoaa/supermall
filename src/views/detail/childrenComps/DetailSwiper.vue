@@ -37,7 +37,4 @@ export default {
 .detail-swiper {
   height: 300px;
 }
-.slide img {
-  width: 320px;
-}
 </style>

@@ -14,7 +14,7 @@
     />
     <scroll 
       ref="scroll"
-      class="content"
+      class="scroll"
       :probeType="3" 
       :pullUpLoad="true"
       @scroll="contentScroll"
@@ -104,7 +104,7 @@ export default {
     this.$refs.scroll.refresh();
   },
   deactivated() {
-    //记录滚动的位置
+    //记录滚动的位置`
     this.saveY = this.$refs.scroll.getScrollY();
     // 去除图片监听事件的scroll刷新
     this.$bus.$off('itemImgLoad', this.itemImgListener);
@@ -180,7 +180,7 @@ export default {
   right: 0;
   z-index: 9;
 }
-.content {
+.scroll {
   position: absolute;
   overflow: hidden;
   top: 44px;

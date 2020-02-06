@@ -5,7 +5,7 @@
       <div class="item"><i class="icon shop"></i><span>店铺</span></div>
       <div class="item"><i class="icon select"></i><span>收藏</span></div>
     </div>
-    <div class="right category"><span>加入购物车</span></div>
+    <div class="right category" @click="addCart"><span>加入购物车</span></div>
     <div class="right buy"><span>购买</span></div>
   </div>
 </template>
@@ -13,7 +13,11 @@
 <script>
   export default {
     name: 'DetailBottomBar',
-
+    methods: {
+      addCart() {
+        this.$emit('addToCart');
+      }
+    },
   }
 </script>
 
