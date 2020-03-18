@@ -13,7 +13,8 @@ export default {
   name: "app",
   components: {
     MainTabBar
-  }
+  },
+
 };
 </script>
 

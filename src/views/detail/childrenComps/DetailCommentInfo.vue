@@ -53,8 +53,7 @@ export default {
 .info-header {
   display: flex;
   justify-content: space-between;
-  margin: 20px 10px 15px;
-  padding-bottom: 15px;
+  line-height: 3rem;
   border-bottom: 1px solid rgba(100, 100, 100, 0.2);
 }
 .info-header .title {
@@ -77,39 +76,33 @@ export default {
   font-size: 16px;
   font-weight: bold;
 }
-.info-detail {
-  padding: 0 10px 0 0;
-  margin: 0 15px 0 12px;
-}
-
 .info-detail p {
   text-indent: 2em;
   color: #fff;
   font-size: 14px;
-  padding: 0 5px;
-  margin-bottom: 10px;
-  line-height: 1.5;
+  line-height: 1.5rem;
   background-color: var(--color-tint);
   border-radius: 5px;
 }
-
 .info-detail .info-other {
   color: #999;
   font-size: 12px;
+  line-height: 1.5rem;
 }
 
 .info-detail .info-other .date {
   margin-right: 10px;
 }
-
 .info-img {
   display: flex;
-  width: 40%;
-  margin: 10px 0 20px 10px;
+  margin: auto;
+  flex-wrap: wrap;
+  padding-bottom: 1rem;
 }
 
 .info-img img {
-  width: 100%;
-  margin-right: 6px;
+  width: 30%;
+  height: 100%;
+  margin-right: .5rem;
 }
 </style>

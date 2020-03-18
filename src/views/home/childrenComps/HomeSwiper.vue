@@ -1,17 +1,11 @@
 <template>
-  <div>
-    <swiper>
-      <template >
-        <swiper-item v-for="item in banners" :key="item.index">
-          <template #default>
-            <a :href="item.link">
-              <img :src="item.image" @load="imgLoad" />
-            </a>
-          </template>
-        </swiper-item>
-      </template>
+    <swiper :slideCount="banners.length">
+      <swiper-item v-for="item in banners" :key="item.index">
+        <a :href="item.link">
+          <img :src="item.image" @load="imgLoad" />
+        </a>
+      </swiper-item>
     </swiper>
-  </div>
 </template>
 
 <script>

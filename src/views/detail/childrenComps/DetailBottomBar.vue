@@ -6,7 +6,7 @@
       <div class="item"><i class="icon select"></i><span>收藏</span></div>
     </div>
     <div class="right category" @click="addCart"><span>加入购物车</span></div>
-    <div class="right buy"><span>购买</span></div>
+    <div class="right buy"><span>立即购买</span></div>
   </div>
 </template>
 
@@ -56,7 +56,7 @@
   flex: 25%;
   text-align: center;
   line-height: 49px;
-  font-size: 15px;
+  font-size: 13px;
 }
 .category {
   background-color: yellow;

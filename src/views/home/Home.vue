@@ -20,19 +20,19 @@
       @scroll="contentScroll"
       @pullingUp="loadMore"
     >
-     <template #default>
-        <home-swiper :banners="banners" @swiperImgLoad="swiperImgLoad" />
-        <home-recommend-view :recommends="recommends" />
-        <home-feature />
-        <tab-control 
-          :titles="['流行','新款','精选']" 
-          @tabClick="tabClick" 
-          ref="tabControl2"
-        />
-        <goods-list :list="goodsStyle" />
-     </template>
+      <home-swiper :banners="banners" @swiperImgLoad="swiperImgLoad" />
+      <home-recommend-view :recommends="recommends" />
+      <home-feature />
+      <tab-control 
+        :titles="['流行','新款','精选']" 
+        @tabClick="tabClick" 
+        ref="tabControl2"
+      />
+      <goods-list :list="goodsStyle" />
     </scroll>
-    <back-top @click.native="backClick" v-show="isBackTopShow"></back-top>
+    <transition name="back-top">
+      <back-top @click.native="backClick" v-show="isBackTopShow"></back-top>
+    </transition>
   </div>
 </template>
 

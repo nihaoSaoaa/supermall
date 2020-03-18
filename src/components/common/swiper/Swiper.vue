@@ -39,24 +39,29 @@ export default {
     showIndicator: {
       type: Boolean,
       default: true
+    },
+    slideCount: {
+      type: Number
     }
   },
   data() {
     return {
-      slideCount: 0, //元素个数
+      itemCount: 0,
       totalWidth: 0, //swiper的宽度
       swiperStyle: {}, //swiper的样式
       currentIndex: 1, //当前图片的索引
       scrolling: true //是否正在滚动
     };
   },
-  mounted() {
-    setTimeout(() => {
-      //操作dom，在前后添加slide
-      this.handleDom();
-      //开启定时器
-      this.startTimer();
-    }, 1000);
+  created () {
+    this.$on('onSwiperItemMounted', () => {
+      if (++ this.itemCount === this.slideCount) {
+        //操作dom，在前后添加slide
+        this.handleDom();
+        //开启定时器
+        this.startTimer();
+      }
+    } );
   },
   methods: {
     /**
@@ -127,6 +132,8 @@ export default {
       // 1. 获取要操作的元素
       const swiperEl = this.$refs.swiper;
       const slideEls = swiperEl.getElementsByClassName("slide");
+      // const slideVNODE = this.$slots.default.map(vnode => vnode.elm);
+      // console.log(slideEls, slideEls.length, slideVNODE);
       // 2. 保存个数
       this.slideCount = slideEls.length;
       // 3. 若大于1，则克隆前后两个dom

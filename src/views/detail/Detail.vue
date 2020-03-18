@@ -11,7 +11,9 @@
       <detail-comment-info :comment-info="commentInfo" ref="comment" />
       <goods-list :list="recommend"  class="list" ref="recommend" />
     </scroll>
-    <back-top @click.native="backClick" v-show="isBackTopShow"></back-top>
+    <transition name="back-top">
+      <back-top @click.native="backClick" v-show="isBackTopShow"></back-top>
+    </transition>
     <detail-bottom-bar @addToCart="addToCart"></detail-bottom-bar>
   </div>
 </template>
@@ -137,7 +139,7 @@ export default {
        // 控制回顶按钮显示
       this.listenBackTopShow(position);
     },
-    async addToCart() {
+    addToCart() {
       if (this.isBottomClick) {
         return;
       }
@@ -149,8 +151,9 @@ export default {
         price: this.goods.lowNowPrice,
         iid: this.iid
       }
-      const msg = await this.addCart(product);
-      this.$toast.show(msg, () => this.isBottomClick = false);
+      this.addCart(product).then(msg => {
+        this.$toast.show(msg, () => this.isBottomClick = false);
+      });
     }
   },
 }
@@ -174,8 +177,5 @@ export default {
   overflow: hidden;
   top: 44px;
   bottom: 49px;
-}
-.list {
-  padding-top: 5px;
 }
 </style>

@@ -43,6 +43,7 @@ table {
 }
 tr {
   height: 42px;
+  line-height: 42px;
 }
 td {
   border-bottom: 1px solid rgba(100, 100, 100, 0.1);

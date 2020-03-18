@@ -13,6 +13,7 @@ Vue.config.productionTip = false
 //创建事件总线对象
 Vue.prototype.$bus =  new Vue()
 // 安装toast插件
+Vue.prototype.$toast = toast;
 Vue.use(toast);
 //使用fastclickj解决移动端300ms延迟
 FastClick.attach(document.body);

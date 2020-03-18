@@ -30,9 +30,8 @@ export default {
       this.$bus.$emit('itemImgLoad');
     },
     itemClick() {
-      if (this.$route.path.includes('/home')) {
-        this.$router.push('/detail' + this.item.iid);
-      }
+      console.log(this.item);
+      this.$router.push('/detail' + this.item.iid);
     }
   }
 }
@@ -47,6 +46,7 @@ export default {
 .goods-items img {
   width: 100%;
   border-radius: 4%;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, .3)
 }
 .goods-info {
   font-size: 12px;

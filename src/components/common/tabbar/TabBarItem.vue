@@ -42,13 +42,13 @@ export default {
 .tab-bar-item {
   flex: 1;
   height: 49px;
-  font-size: 14px;
+  font-size: 12px;
   text-align: center;
 }
 .tab-bar-item img {
   width: 24px;
   height: 24px;
-  margin-top: 3px;
+  margin: 3px 0 4px;
   vertical-align: middle;
 }
 </style>

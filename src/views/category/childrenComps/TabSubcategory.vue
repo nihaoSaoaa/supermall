@@ -37,6 +37,7 @@ export default {
   text-align: center;
   font-size: 12px;
   padding: 20px 0;
+  background-color: #fff;
 }
 .item {
   margin-bottom: 15px;

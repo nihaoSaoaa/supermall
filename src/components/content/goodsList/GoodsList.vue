@@ -24,8 +24,9 @@ export default {
 
 <style scoped>
 .goods-list {
+  padding: .2rem;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   flex-wrap: wrap;
 }
 </style>

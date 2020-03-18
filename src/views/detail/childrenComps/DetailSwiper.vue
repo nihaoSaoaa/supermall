@@ -1,17 +1,11 @@
 <template>
-  <div>
-    <swiper class="detail-swiper">
-      <template >
-        <swiper-item v-for="(src, index) in topImages" :key="index">
-          <template #default>
-            <a :href="src">
-              <img :src="src" />
-            </a>
-          </template>
-        </swiper-item>
-      </template>
-    </swiper>
-  </div>
+  <swiper class="detail-swiper" :slideCount="topImages.length">
+      <swiper-item v-for="(src, index) in topImages" :key="index">
+        <a :href="src">
+          <img :src="src" />
+        </a>
+      </swiper-item>
+  </swiper>
 </template>
 
 <script>

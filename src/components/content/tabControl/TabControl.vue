@@ -51,7 +51,7 @@ export default {
   margin: 0 30px;
 }
 .tab-control .tab-control-item span {
-  padding: 5px;
+  padding: 3px;
   position: relative;
 }
 .tab-control .tab-control-item span::after {
@@ -61,7 +61,7 @@ export default {
   height: 3px;
   position: absolute;
   bottom: -2px;
-  left: 0;
+  left: 0px;
   background-color: var(--color-tint);
   border-radius: 1.5px;
   opacity: 0;

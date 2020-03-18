@@ -1,7 +1,10 @@
 <template>
-  <div class="toast" v-show="isShow" ref="toast">
-    <span>{{msg}}</span>
-  </div>
+  <transition name="fade" 
+  >
+    <div class="toast" v-show="isShow" ref="toast" >
+      <span>{{msg}}</span>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -15,20 +18,14 @@
     },
     methods: {
       show(msg, cb) {
-        if (this.isShow) {
-          return;
-        }
+        if (this.isShow) return;
         this.msg = msg;
         this.isShow = true;
         setTimeout(() => {
-          this.$refs.toast.classList.add('fade');
-        });
-        this.$refs.toast.ontransitionend = () => {
           this.isShow = false;
-          this.$refs.toast.classList.remove('fade');
           cb && cb();
-        }
-      }
+        }, 1000);
+      },
     },
   }
 </script>
@@ -45,10 +42,5 @@
   color: #fff;
   background-color: rgba(0, 0, 0, .7);
   z-index: 99;
-
-}
-.fade {
-  transition: opacity .5s ease-out 1s;
-  opacity: 0;  
 }
 </style>

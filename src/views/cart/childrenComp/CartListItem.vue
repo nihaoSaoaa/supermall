@@ -3,7 +3,7 @@
     <div class="selector">
       <check-button :is-checked="goods.checked" @click.native="checkBtnClick" />
     </div>
-    <div class="item-img">
+    <div class="item-img" @click="imgClick">
       <img :src="goods.image" alt="">
     </div>
     <div class="item-info">
@@ -11,7 +11,7 @@
       <div class="desc">{{goods.desc}}</div>
       <div class="bottom">
         <div class="price">¥{{goods.price}}</div>
-        <div class="count">x{{goods.count}}</div>
+        <num-selector :value="goods.count" @changeValue="changeValue" />
       </div>
     </div>
   </div>
@@ -19,10 +19,15 @@
 
 <script>
 import CheckButton from 'components/content/checkButton/CheckButton'
+import NumSelector from 'components/content/selector/NumSelector'
+import { mapActions } from 'vuex'
+
 export default {
+  
   name: 'CartListItem',
   components: {
     CheckButton,
+    NumSelector
   },
   props: {
     goods: {
@@ -33,8 +38,18 @@ export default {
     },
   },
   methods: {
+    ...mapActions([
+      'changeCount', //also supports payload `this.nameOfAction(amount)` 
+    ]),
     checkBtnClick() {
       this.goods.checked = !this.goods.checked;
+    },
+    changeValue(num) {
+      this.goods.count = num;
+      this.changeCount({ goods: this.goods, num });
+    },
+    imgClick() {
+      this.$router.push('/detail' + this.goods.iid);
     }
   },
 }
@@ -57,7 +72,7 @@ export default {
   width: 30%;
 }
 .item-img>img {
-  width: 90%;
+  width: 70%;
   border-radius: 8px;
 }
 .item-info {
@@ -65,7 +80,8 @@ export default {
 }
 .title,
 .desc {
-  margin-top: 15px;
+  height: 2.3rem;
+  line-height: 2.3rem;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -76,12 +92,9 @@ export default {
 }
 .bottom {
   display: flex;
-  margin-top: 30px;
-  bottom: 10px;
-  justify-content: center;
+  justify-content: space-around;
 }
 .bottom .price {
-  margin-right: 40px;
   color: var(--color-high-text);
 }
 </style>

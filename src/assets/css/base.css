@@ -4,6 +4,8 @@ body {
   margin: 0;
 }
 @import "./normalize.css";
+@import './react.css';
+@import './common.css';
 
 /* :root -> 获取根元素html */
 

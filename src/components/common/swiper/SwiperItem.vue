@@ -5,8 +5,13 @@
 </template>
 
 <script>
+import Emitter from 'common/emitter'
 export default {
-  name: "SwiperItem"
+  name: "SwiperItem",
+  mixins: [Emitter],
+  mounted () {
+    this.dispatch('Swiper', 'onSwiperItemMounted');
+  },
 };
 </script>
 

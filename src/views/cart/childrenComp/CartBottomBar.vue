@@ -6,7 +6,7 @@
       <span class="price">合计:¥{{totalPrice}}</span>
     </div>
 
-    <div class="calc" @click="calcClick">去计算({{checkedLength}})</div>
+    <div class="calc" @click="calcClick">去结算({{checkedLength}})</div>
   </div>
 </template>
 
@@ -55,8 +55,8 @@ export default {
   height: 40px;
   display: flex;
   font-size: 14px;
-   background-color: #eee;
-   line-height: 40px;
+  background-color: #eee;
+  line-height: 40px;
 }
 .check-content {
   display: flex;

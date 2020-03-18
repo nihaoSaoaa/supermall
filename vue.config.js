@@ -1,3 +1,4 @@
+
 module.exports = {
   configureWebpack: {
     resolve: {
@@ -9,6 +10,12 @@ module.exports = {
         'network': '@/network',
         'views': '@/views',
       }
+    },
+    externals: {
+      'vue': 'Vue',
+      'vue-router': 'VueRouter',
+      'vuex': 'Vuex',
+      'axios': 'axios'
     }
   }
 }
