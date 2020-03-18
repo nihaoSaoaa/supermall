@@ -1,7 +1,7 @@
 <template>
   <div id="detail">
     <detail-nav-bar class="detail-nav-bar" @navClick="navClick" ref="navBar" />
-    <scroll class="scroll" ref="scroll" :probeType="3" @scroll="contentScroll">
+    <scroll class="main-scroll" ref="scroll" :probeType="3" @scroll="contentScroll">
       <p>{{$store.carList}}</p>
       <detail-swiper :topImages="topImages" />
       <detail-base-info :goods="goods" />
@@ -170,12 +170,5 @@ export default {
   background-color: #fff;
   z-index: 1;
   position: relative;
-}
-.scroll {
-  width: 100%;
-  position: absolute;
-  overflow: hidden;
-  top: 44px;
-  bottom: 49px;
 }
 </style>

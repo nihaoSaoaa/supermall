@@ -1,6 +1,6 @@
 <template>
   <div id="category">
-    <nav-bar class="nav-bar">
+    <nav-bar class="top-nav-bar">
       <template #center>
         <span>分类</span>
       </template>
@@ -83,11 +83,6 @@ export default {
 <style scoped>
 #category {
   height: 100vh;
-}
-.nav-bar {
-  background-color: var(--color-tint);
-  color: #fff;
-  text-align: center;
 }
 .content {
   position: absolute;

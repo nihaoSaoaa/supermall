@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav-bar class="nav-bar">
+    <nav-bar class="top-nav-bar">
       <template #center>
         <div>我的档案</div>
       </template>
@@ -43,9 +43,4 @@ export default {
 </script>
 
 <style scoped>
-.nav-bar {
-  text-align: center;
-  background-color: var(--color-tint);
-  color: #fff;
-}
 </style>

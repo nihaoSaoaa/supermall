@@ -19,5 +19,5 @@ export default {
 </script>
 
 <style>
-@import url(assets/css/base.css);
+@import url(assets/style/common/base.less);
 </style>

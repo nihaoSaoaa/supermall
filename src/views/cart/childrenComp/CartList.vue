@@ -1,9 +1,9 @@
 <template>
-  <div class="cart-list"> 
+  <!-- <div class="cart-list">  -->
     <scroll class="scroll" ref="scroll">
       <cart-list-item v-for="value in cartList" :key="value.iid" :goods="value"  />
     </scroll>
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -30,11 +30,8 @@ export default {
 </script>
 
 <style scoped>
-.cart-list {
-  height: calc(100% - 44px - 49px - 40px);
-}
 .scroll {
-  height: 100%;
+  height: calc(100% - 44px - 49px - 40px);
   overflow: hidden;
 }
 </style>

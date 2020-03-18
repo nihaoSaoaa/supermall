@@ -1,6 +1,6 @@
 <template>
-  <div id="home">
-    <nav-bar class="home-nav">
+  <div class="main-view">
+    <nav-bar class="top-nav-bar">
       <template #center>
         <div class="center">购物街</div>
       </template>
@@ -14,7 +14,7 @@
     />
     <scroll 
       ref="scroll"
-      class="scroll"
+      class="main-scroll"
       :probeType="3" 
       :pullUpLoad="true"
       @scroll="contentScroll"
@@ -162,28 +162,11 @@ export default {
 }
 </script>
 
-<style scoped>
-#home {
-  position: relative;
-  height: 100vh;
-}
-.home-nav {
-  background-color: var(--color-tint);
-  color: #fff;
-}
-.home-nav .center {
-  text-align: center;
-}
+<style lang="less" scoped>
 .tab-control-fixed {
   position: fixed;
   left: 0;
   right: 0;
   z-index: 9;
-}
-.scroll {
-  position: absolute;
-  overflow: hidden;
-  top: 44px;
-  bottom: 49px;
 }
 </style>

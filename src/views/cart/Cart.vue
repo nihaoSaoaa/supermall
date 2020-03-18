@@ -1,6 +1,6 @@
 <template>
   <div id="cart">
-    <nav-bar class="cart-nav">
+    <nav-bar class="top-nav-bar">
       <template #center >
         <span>购物车({{length}})</span>
       </template>
@@ -35,10 +35,5 @@ export default {
 <style scoped>
 #cart {
   height: 100vh;
-}
-.cart-nav {
-  background-color: var(--color-tint);
-  color: #fff;
-  text-align: center;
 }
 </style>
