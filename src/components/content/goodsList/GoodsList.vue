@@ -1,7 +1,7 @@
 <template>
-  <div class="goods-list">
-    <goods-list-item v-for="(item, index) in list" :key="index" :item="item"></goods-list-item>
-  </div>
+  <transition-group class="goods-list" name="list">
+    <goods-list-item v-for="item in list" :key="item" :item="item"></goods-list-item>
+  </transition-group>
 </template>
 
 <script>

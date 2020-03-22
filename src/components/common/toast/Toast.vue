@@ -17,30 +17,38 @@
       }
     },
     methods: {
-      show(msg, cb) {
-        if (this.isShow) return;
-        this.msg = msg;
-        this.isShow = true;
-        setTimeout(() => {
-          this.isShow = false;
-          cb && cb();
-        }, 1000);
+      show(msg,delay) {
+        return new Promise((resolve, reject) => {
+          if (this.isShow) {
+            resolve();
+          }
+          this.msg = msg;
+          this.isShow = true;
+          setTimeout(() => {
+            this.isShow = false;
+            resolve(msg);
+          }, delay);
+        })
       },
     },
   }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .toast {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  .center(fixed);
   white-space: nowrap;
-  border-radius: 20%/100%;
+  border-radius: 10px;
   padding: 8px 10px;
   color: #fff;
+  font-size: @small-size;
   background-color: rgba(0, 0, 0, .7);
   z-index: 99;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
 }
 </style>

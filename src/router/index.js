@@ -4,10 +4,16 @@ import Router from 'vue-router'
 Vue.use(Router);
 
 const Cart = () => import('views/cart/Cart')
-const Category = () => import ('@/views/category/Category')
-const Home = () => import ('@/views/home/Home')
-const profile = () => import ('@/views/profile/Profile')
-const detail = () => import ('@/views/detail/Detail')
+const Category = () => import ('views/category/Category')
+const Home = () => import ('views/home/Home')
+const profile = () => import ('views/profile/Profile')
+const detail = () => import ('views/detail/Detail')
+
+const download = () => import (/* webpackChunkName: "profile" */'views/profile/ChildrenViews/DownLoad.vue')
+const login = () => import (/* webpackChunkName: "profile" */'views/profile/ChildrenViews/Login.vue')
+const message = () => import (/* webpackChunkName: "profile" */'views/profile/ChildrenViews/MessageBoard.vue')
+const reward = () => import (/* webpackChunkName: "profile" */'views/profile/ChildrenViews/Reward.vue')
+
 
 const router = new Router({
   routes: [
@@ -29,10 +35,31 @@ const router = new Router({
     },
     {
       path: '/profile',
-      component: profile
+      component: profile, 
+      children: [
+        {
+          path: 'download',
+          component: download
+        },
+        {
+          path: 'login',
+          component: login
+        },
+        {
+          path: 'message',
+          component: message,
+          meta: {
+            login: true
+          }
+        },
+        {
+          path: 'reward',
+          component: reward
+        },
+      ]
     },
     {
-      path: '/detail:iid',
+      path: '/detail/:iid',
       component: detail
     }
   ],

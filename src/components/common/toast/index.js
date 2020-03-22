@@ -10,13 +10,13 @@ function getNewInstance() {
   }
 }
 
-function notice(msg, cb) {
+function notice(msg, delay = 1000) {
   newInstance = getNewInstance();
-  newInstance.show(msg, cb)
+  return newInstance.show(msg ,delay)
 }
 
 export default {
-  show(msg, cb) {
-    notice(msg, cb)
+  show(msg ,delay) {
+    return notice(msg, delay)
   }
 }

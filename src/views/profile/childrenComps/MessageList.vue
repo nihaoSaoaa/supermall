@@ -1,7 +1,7 @@
 <template>
   <div class="message-list" v-if="msg.length!==0">
-    <div class="message-item" v-for="(item, index) in msg" :key="index">
-      <div class="icon">
+    <div class="message-item" v-for="(item, index) in msg" :key="index" @click="handleClick(item.info)">
+      <div class="icon" v-if="item.icon">
         <img :src="iconURL(item)" />
       </div>
       <div class="message">{{item.info}}</div>
@@ -23,14 +23,18 @@ export default {
   methods: {
     iconURL(item) {
       return require("assets/img/profile/" + item.icon);
+    },
+    handleClick(info) {
+      this.$emit('routeChange', info);
     }
   },
 }
 </script>
 
-<style scoped>
+<style  lang="less" scoped>
 .message-list {
   border-top: 18px solid #eee;
+  font-size: @small-size;
 }
 
 .message-item {
@@ -51,7 +55,7 @@ export default {
 .message-item .message {
   border-top: 1px solid #eee;
   flex: 1;
-  padding: 12px 4px;
+  padding: 11px 4px;
   font-size: 14px;
 }
 

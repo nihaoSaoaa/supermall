@@ -1,5 +1,5 @@
 <template>
-  <div id="category">
+  <div>
     <nav-bar class="top-nav-bar">
       <template #center>
         <span>分类</span>
@@ -12,7 +12,6 @@
         <tab-subcategory :subcategories="showSubcategory" @imageLoad="imageLoad"></tab-subcategory>
       </scroll>
     </div>
-
     <back-top @click.native="backClick" v-show="isBackTopShow"></back-top>
   </div>
 </template>
@@ -81,16 +80,9 @@ export default {
 </script>
 
 <style scoped>
-#category {
-  height: 100vh;
-}
 .content {
-  position: absolute;
-  top: 44px;
-  left: 0;
-  right: 0;
-  bottom: 49px;
   display: flex;
+  height: calc(100vh - 44px - 49px);
 }
 .scroll {
   flex: 1;

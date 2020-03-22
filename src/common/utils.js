@@ -17,7 +17,6 @@ export function formatDate(date, fmt) {
   if (/(Y+)/.test(fmt)) {
     fmt = fmt.replace(RegExp.$1, String(date.getFullYear()).substring(4 - RegExp.$1.length));
   }
-  console.log(fmt);
   //匹配其他
   const o = {
     'M+': date.getMonth() + 1,

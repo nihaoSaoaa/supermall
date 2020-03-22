@@ -5,17 +5,29 @@
       <div class="item"><i class="icon shop"></i><span>店铺</span></div>
       <div class="item"><i class="icon select"></i><span>收藏</span></div>
     </div>
-    <div class="right category" @click="addCart"><span>加入购物车</span></div>
-    <div class="right buy"><span>立即购买</span></div>
+    <div class="right img">
+      <img src="~assets/img/tabbar/shopcart_active.svg" alt="">
+      <span class="count">{{ count }}</span>
+      </div>
+    <div class="right category" @click="addCart"><div>加入购物车</div></div>
+    <div class="right buy" @click="buyClick"><div>立即购买</div></div>
   </div>
 </template>
 
 <script>
   export default {
     name: 'DetailBottomBar',
+    props: {
+      count: {
+        type: Number, 
+      },
+    },
     methods: {
       addCart() {
         this.$emit('addToCart');
+      },
+      buyClick() {
+        this.$toast.show('请先登录您的账号！')
       }
     },
   }
@@ -31,12 +43,12 @@
   display: flex;
 }
 .left {
-  flex: 50%;
+  flex: 30%;
   display: flex;
 }
 .left .item {
   flex: 1;
-  font-size: 14px;
+  font-size: 12px;
   text-align: center;
 }
 .left .item .icon {
@@ -53,15 +65,41 @@
   background-position: 0 -98px;
 }
 .right {
-  flex: 25%;
-  text-align: center;
-  line-height: 49px;
-  font-size: 13px;
+  flex: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  position: relative;
 }
-.category {
+.right>div {
+  padding: 5px 3px;
+  border-radius: 10px;
+}
+.category>div {
   background-color: yellow;
 }
-.buy {
+img {
+  width: 25px;
+  height: 25px;
+  margin: 3px 0 4px;
+  vertical-align: middle;
+  position: relative;
+}
+.img span {
+  position: absolute;
+  top: 9px;
+  right: 16px;
+  width: 15px;
+  height: 15px;
+  line-height: 15px;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 50%;
+  border: 1px solid var(--color-tint);
+  background-color: #fff;
+}
+.buy>div {
   background-color: var(--color-tint);
   color: #fff;
 }

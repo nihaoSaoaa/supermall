@@ -31,7 +31,8 @@ export default {
 
 <style scoped>
 .scroll {
-  height: calc(100% - 44px - 49px - 40px);
+  width: 100vw;
+  height: calc(100vh - 44px - 49px - 40px);
   overflow: hidden;
 }
 </style>

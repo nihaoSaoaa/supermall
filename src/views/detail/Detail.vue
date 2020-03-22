@@ -14,7 +14,7 @@
     <transition name="back-top">
       <back-top @click.native="backClick" v-show="isBackTopShow"></back-top>
     </transition>
-    <detail-bottom-bar @addToCart="addToCart"></detail-bottom-bar>
+    <detail-bottom-bar @addToCart="addToCart" :count="count"></detail-bottom-bar>
   </div>
 </template>
 
@@ -36,7 +36,7 @@ import BackTop from 'components/content/backTop/BackTop';
 import { Goods, Shop, GoodsParam, getDetailData, getRecommend } from 'network/detail';
 // 混入
 import { itemListenerMixin, backTopMixin } from "common/mixin";
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'Detail',
@@ -103,6 +103,15 @@ export default {
       })
     });
   },
+  computed: {
+    ...mapGetters([
+      'cartList'
+    ]),
+    count() {
+      const list = this.cartList.find( list => list.iid === this.iid )
+      return (!list) ? 0 : list.count;
+    }
+  },
   destroyed () {
     // 去除图片监听事件的scroll刷新
     this.$bus.$off('itemImgLoad', this.itemImgListener);
@@ -152,7 +161,10 @@ export default {
         iid: this.iid
       }
       this.addCart(product).then(msg => {
-        this.$toast.show(msg, () => this.isBottomClick = false);
+        this.$toast.show(msg)
+          .then(msg => {
+            if (msg) this.isBottomClick = false;
+          });
       });
     }
   },
@@ -170,5 +182,12 @@ export default {
   background-color: #fff;
   z-index: 1;
   position: relative;
+}
+.back-top-enter, .back-top-leave-to {
+  transform: scale(.5);
+  opacity: 0;
+}
+.back-top-enter-active, .back-top-leave-active {
+  transition: all .5s;
 }
 </style>

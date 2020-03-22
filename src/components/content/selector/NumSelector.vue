@@ -3,9 +3,9 @@
     <span class="derement" @click="handleClick(-1)" :class="{ disabled: val <= 1}">-</span>
     <span class="num" @click="openNewArea">{{ val }}</span>
     <span class="increment" @click="handleClick(1)">+</span>
-    <transition name="fade">
-      <div class="model" v-if="isShow && clickType === 'alert'">
-          <div class="fixed-selector">
+    <transition name="selector">
+      <!-- <div class="model" v-if="isShow && clickType === 'alert'"> -->
+          <div class="fixed-selector" v-if="isShow">
             <div class="title">修改购买数量</div>
             <div class="select-area">
               <span @click="innerClick(-1)" :class="{ disabled: selectVal <= 1}">-</span>
@@ -17,7 +17,10 @@
               <div class="btn define" @click="handleDefine">确定</div>
             </div>
           </div>
-      </div>
+      <!-- </div> -->
+    </transition>
+    <transition name="fade">
+      <div class="model" v-if="isShow"></div>
     </transition>
   </div>
 </template>
@@ -89,7 +92,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .num-selector {
   font-weight: bold;
 }
@@ -116,45 +119,40 @@ export default {
   color: #eee;
 }
 .model{
+  z-index: 9;
   position: fixed;
   left: 0;
   top: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, .5);
-  /* opacity: .3; */
-  z-index: 99;
 }
-.model .fixed-selector {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+.fixed-selector {
+  .center(fixed);
   width: 80%;
   border-radius: .5rem;
   padding: 1rem;
   background-color: #fff;
   text-align: center;
-  font-size: 15px;
+  font-size: @middle-size;
+  z-index: 99;
 }
 .title {
   margin-bottom: .5rem;
 }
-.model .select-area span {
+.select-area span {
   display: inline-block;
   width: 2rem;
   height: 2rem;
   line-height: 2rem;
-  border: 1px solid #eee;
+  border: 1px solid #999;
 }
-.model .select-area input {
+.select-area input {
   width: 4rem;
   height: 2rem;
   padding-left: 1rem;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
   position: relative;
-  top: -1px;
+  top: -3px;
 }
 .btn-area {
   margin-top: 10px;

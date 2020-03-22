@@ -11,7 +11,7 @@
       <div class="desc">{{goods.desc}}</div>
       <div class="bottom">
         <div class="price">¥{{goods.price}}</div>
-        <num-selector :value="goods.count" @changeValue="changeValue" />
+        <num-selector :value="goods.count" @changeValue="changeValue"  />
       </div>
     </div>
   </div>
@@ -49,7 +49,7 @@ export default {
       this.changeCount({ goods: this.goods, num });
     },
     imgClick() {
-      this.$router.push('/detail' + this.goods.iid);
+      this.$router.push('/detail/' + this.goods.iid);
     }
   },
 }

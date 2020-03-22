@@ -31,7 +31,7 @@ export default {
     },
     itemClick() {
       console.log(this.item);
-      this.$router.push('/detail' + this.item.iid);
+      this.$router.push('/detail/' + this.item.iid);
     }
   }
 }
@@ -46,7 +46,7 @@ export default {
 .goods-items img {
   width: 100%;
   border-radius: 4%;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, .3)
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, .1)
 }
 .goods-info {
   font-size: 12px;

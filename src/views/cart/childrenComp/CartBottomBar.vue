@@ -44,14 +44,15 @@ export default {
       });
     },
     calcClick() {
-      this.$toast.show('穷鬼你买NM呢');
+      this.$toast.show('请先登录您的账号！');
     }
   },
 }
 </script>
-
+  
 <style scoped>
 .bottom-bar {
+  width: 100vw;
   height: 40px;
   display: flex;
   font-size: 14px;

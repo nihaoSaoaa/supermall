@@ -1,5 +1,5 @@
 <template>
-  <div id="cart">
+  <div>
     <nav-bar class="top-nav-bar">
       <template #center >
         <span>购物车({{length}})</span>
@@ -33,7 +33,4 @@ export default {
 </script>
 
 <style scoped>
-#cart {
-  height: 100vh;
-}
 </style>

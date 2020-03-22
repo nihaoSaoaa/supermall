@@ -1,5 +1,5 @@
 <template>
-  <div class="main-view">
+  <div>
     <nav-bar class="top-nav-bar">
       <template #center>
         <div class="center">购物街</div>
@@ -16,7 +16,7 @@
       ref="scroll"
       class="main-scroll"
       :probeType="3" 
-      :pullUpLoad="true"
+      pullUpLoad
       @scroll="contentScroll"
       @pullingUp="loadMore"
     >
@@ -132,6 +132,7 @@ export default {
         this.goods[type].page += 1;
         //结束上拉加载更多
         this.$refs.scroll.finishPullUp();
+        
       })
     },
     /**
@@ -142,22 +143,29 @@ export default {
       // 使两个导航栏样式一样
       this.$refs.tabControl1.currentIndex = index;
       this.$refs.tabControl2.currentIndex = index;
+      // 使滚动回导航栏 top 位置
+      this.$refs.scroll.scrollTo(0, -this.tabOffsetTop);
+      this.loadActive();
     },
     contentScroll(position) {
       // 1. backTop组件是否显示
       this.listenBackTopShow(position);
-      // 2. scroll1组件是否显示(实现吸顶效果)
+      // 2. tab-control1 组件是否显示(实现吸顶效果)
       this.isTabControlShow = (-position.y) > this.tabOffsetTop;
     },
     loadMore() {
       this.getHomeGoods(this.currentType[this.typeIndex]);
+      this.loadActive();
+    },
+    loadActive() {
+      this.$toast.show('正在努力加载', 2000);
     },
     /**
      * 轮播图加载完成获取导航栏offsetTop
      */
     swiperImgLoad() {
-      this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop;
-    }
+      this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop - 44;
+    },
   } 
 }
 </script>
@@ -168,5 +176,12 @@ export default {
   left: 0;
   right: 0;
   z-index: 9;
+}
+.back-top-enter, .back-top-leave-to {
+  transform: scale(.5);
+  opacity: 0;
+}
+.back-top-enter-active, .back-top-leave-active {
+  transition: all .5s;
 }
 </style>

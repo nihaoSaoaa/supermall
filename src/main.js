@@ -8,7 +8,23 @@ import toast from 'components/common/toast'
 import FastClick from 'fastclick'
 import LazyLoad from 'vue-lazyload'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = true
+
+router.beforeEach((to, from, next) => {
+  const needLogin = to.matched.some(record=> record.meta.login);
+  if (needLogin) {
+    const isLogin = document.cookie.includes('uid');
+    if (isLogin) {
+      next();
+    } else {
+      // this.$toast.show('请先登录查看信息！')
+      // console.log(this);
+      next('/profile/login')
+    }
+  } else {
+    next();
+  }
+})
 
 //创建事件总线对象
 Vue.prototype.$bus =  new Vue()

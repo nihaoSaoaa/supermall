@@ -23,8 +23,8 @@ Toast.newInstance = (props = {}) => {
   document.body.appendChild(component.$el)
   const toast = component.$children[0]
   return {
-    show(msg, cb) {
-      toast.show(msg, cb)
+    show(msg,delay) {
+      return toast.show(msg, delay)
     }
   }
 }
