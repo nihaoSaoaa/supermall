@@ -9,7 +9,7 @@
             <div class="title">修改购买数量</div>
             <div class="select-area">
               <span @click="innerClick(-1)" :class="{ disabled: selectVal <= 1}">-</span>
-              <input type="text" :value="selectVal" @input="input">
+              <input type="text" :value="selectVal" @input.prevent="input">
               <span @click="innerClick(1)">+</span>
             </div>
             <div class="btn-area">
@@ -77,10 +77,11 @@ export default {
       this.validate(this.selectVal)
     },
     input(e) {
-      console.log(e);
-      const val = Number(e.target.value);
-      if (val === NaN) return
-      this.selectVal = val
+      console.log(typeof e.target.value);
+      const val = e.target.value;
+      const newVal = val.replace(/[^0-9]/g,'');
+      e.target.value = newVal;
+      this.selectVal = newVal;
       this.validate(this.selectVal);
     }
   },

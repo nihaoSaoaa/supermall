@@ -1,6 +1,6 @@
 <template>
   <transition-group class="goods-list" name="list">
-    <goods-list-item v-for="item in list" :key="item" :item="item"></goods-list-item>
+    <goods-list-item v-for="item in list" :key="item.acm" :item="item"></goods-list-item>
   </transition-group>
 </template>
 

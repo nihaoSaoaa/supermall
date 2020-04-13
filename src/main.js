@@ -4,11 +4,12 @@ import router from './router'
 import store from './store'
 
 import toast from 'components/common/toast'
+import vSlice from './common/directions'
 
 import FastClick from 'fastclick'
 import LazyLoad from 'vue-lazyload'
 
-Vue.config.productionTip = true
+Vue.config.productionTip = false
 
 router.beforeEach((to, from, next) => {
   const needLogin = to.matched.some(record=> record.meta.login);
@@ -26,6 +27,7 @@ router.beforeEach((to, from, next) => {
   }
 })
 
+
 //创建事件总线对象
 Vue.prototype.$bus =  new Vue()
 // 安装toast插件
@@ -36,6 +38,7 @@ FastClick.attach(document.body);
 Vue.use(LazyLoad, {
   loading: require('./assets/img/common/placeholder.png')
 })
+Vue.use(vSlice)
 
 new Vue({
   render: h => h(App),

@@ -37,13 +37,14 @@
 <style lang="less" scoped>
 .toast {
   .center(fixed);
+  margin-top: 20px;
   white-space: nowrap;
   border-radius: 10px;
   padding: 8px 10px;
   color: #fff;
   font-size: @small-size;
   background-color: rgba(0, 0, 0, .7);
-  z-index: 99;
+  z-index: 9999;
 }
 .fade-enter, .fade-leave-to {
   opacity: 0;

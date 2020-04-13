@@ -21,7 +21,6 @@ import NavBar from 'components/common/navbar/NavBar';
 import UserInfo from "./childrenComps/UserInfo";
 import AccountInfo from "./childrenComps/AccountInfo";
 import MessageList from "./childrenComps/MessageList";
-import LoginBar from './childrenComps/LoginBar'
 export default {
   name: 'Profile',
   components: {

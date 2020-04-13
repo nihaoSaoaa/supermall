@@ -14,7 +14,7 @@
     <transition name="back-top">
       <back-top @click.native="backClick" v-show="isBackTopShow"></back-top>
     </transition>
-    <detail-bottom-bar @addToCart="addToCart" :count="count"></detail-bottom-bar>
+    <detail-bottom-bar @addToCart="addToCart" :count="count" ref="bottomBar"></detail-bottom-bar>
   </div>
 </template>
 
@@ -153,6 +153,7 @@ export default {
         return;
       }
       this.isBottomClick = true;
+      this.$refs.bottomBar.changeShow();
       const product = {
         image: this.topImages[0],
         title: this.goods.title,
@@ -163,7 +164,10 @@ export default {
       this.addCart(product).then(msg => {
         this.$toast.show(msg)
           .then(msg => {
-            if (msg) this.isBottomClick = false;
+            if (msg) {
+              this.isBottomClick = false;
+              this.$refs.bottomBar.changeShow();
+            }
           });
       });
     }

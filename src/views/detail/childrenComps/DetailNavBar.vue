@@ -1,9 +1,7 @@
 <template>
   <nav-bar>
     <template #left>
-      <div class="left" @click="backClick">
-        <img src="~assets/img/common/back.svg" alt="">
-      </div>
+      <backRoute/>
     </template>
     <template #center>
       <div class="title">
@@ -15,10 +13,12 @@
 
 <script>
 import NavBar from 'components/common/navbar/NavBar'
+import BackRoute from 'components/content/backRoute/BackRoute'
 export default {
   name: 'DetailNavBar',
   components: {
     NavBar,
+    BackRoute
   },
   data() {
     return {
@@ -30,9 +30,6 @@ export default {
     itemClick(index) {
       this.curItem = index;
       this.$emit('navClick', index);
-    },
-    backClick() {
-      this.$router.go(-1);
     }
   },
 }
@@ -49,11 +46,5 @@ export default {
 }
 .isShow {
   color: var(--color-high-text);
-}
-.left {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 </style>

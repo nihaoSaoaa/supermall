@@ -32,11 +32,8 @@
 .list-enter, .list-leave-to {
   opacity: 0;
 }
-.list-enter-active, .list-leave-active {
+.list-enter-active{
   transition: all .5s linear;
-}
-.list-move {
-  transition: all .5s;
 }
 
 .fold-left-enter-active {
@@ -89,4 +86,29 @@
 }
 .slide-left-leave-active {
   animation: fold-right-leave .3s linear ;
+}
+
+.add-to-cart-leave-active {
+  animation: cate-btn-rotate 1s linear .1s;
+}
+
+@keyframes cate-btn-rotate {
+  0% {
+    font-size: 5px;
+    width: 95%;
+    transform:  translate(-50%, -50%)  scale(1)  rotate(0);
+  }
+  10% {
+    font-size: 1px;
+    width: 24px;
+    transform:  translate(-50%, -40px - 50%)   scale(1) rotate(0px) ;
+    transform-origin: -45px 0px;
+  }
+  100% {
+    font-size: 0px;
+    height: 0px;
+    width: 0px;
+    transform:  translate(-50%, -50%)  scale(0) rotate(-180deg);
+    transform-origin: -45px 0px;
+  }
 }

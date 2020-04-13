@@ -9,10 +9,10 @@ const Home = () => import ('views/home/Home')
 const profile = () => import ('views/profile/Profile')
 const detail = () => import ('views/detail/Detail')
 
-const download = () => import (/* webpackChunkName: "profile" */'views/profile/ChildrenViews/DownLoad.vue')
-const login = () => import (/* webpackChunkName: "profile" */'views/profile/ChildrenViews/Login.vue')
-const message = () => import (/* webpackChunkName: "profile" */'views/profile/ChildrenViews/MessageBoard.vue')
-const reward = () => import (/* webpackChunkName: "profile" */'views/profile/ChildrenViews/Reward.vue')
+const download = () => import (/* webpackChunkName: "profile" */'views/profile/ChildrenViews/download/DownLoad.vue')
+const login = () => import (/* webpackChunkName: "profile" */'views/profile/ChildrenViews/login/Login.vue')
+const message = () => import (/* webpackChunkName: "profile" */'views/profile/ChildrenViews/messageBoard/MessageBoard.vue')
+const reward = () => import (/* webpackChunkName: "profile" */'views/profile/ChildrenViews/reward/Reward.vue')
 
 
 const router = new Router({

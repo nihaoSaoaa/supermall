@@ -21,7 +21,7 @@ export default {
   box-shadow: 0px 1px 5px rgba(0, 0, 0, .3);
 }
 .nav-bar .left, .right {
-  width: 40px;
+  width: 55px;
 }
 .nav-bar .center {
   flex: 1;
