@@ -9,7 +9,7 @@ import vSlice from './common/directions'
 import FastClick from 'fastclick'
 import LazyLoad from 'vue-lazyload'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = true
 
 router.beforeEach((to, from, next) => {
   const needLogin = to.matched.some(record=> record.meta.login);

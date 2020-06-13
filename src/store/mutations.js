@@ -1,9 +1,9 @@
 import {
   ADD_COUNTER,
   ADD_TO_CART,
-  DELETE_COUNTER,
   CHANGE_COUNTER,
-  REMOVE_ONE
+  SET_TO_CART,
+  DELETE_BY_INDEX
 } from './mutation-types'
 
 export default  {
@@ -18,5 +18,11 @@ export default  {
   },
   [CHANGE_COUNTER](state, { oldProduct, num }) { 
     oldProduct.count = num;
+  },
+  [SET_TO_CART](state, payload) {
+    state.cartList = payload;
+  },
+  [DELETE_BY_INDEX](state, payload) {
+    state.cartList.splice(payload.index, 1);
   }
 }

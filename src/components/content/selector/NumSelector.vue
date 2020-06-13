@@ -77,7 +77,6 @@ export default {
       this.validate(this.selectVal)
     },
     input(e) {
-      console.log(typeof e.target.value);
       const val = e.target.value;
       const newVal = val.replace(/[^0-9]/g,'');
       e.target.value = newVal;

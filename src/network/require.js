@@ -3,8 +3,8 @@ import axios from 'axios'
 export function request(config) {
   //创建对应的axios实例
   const instance = axios.create({
-    baseURL: 'http://123.207.32.32:8000/api/wh',
-    // api 接口请微信加 coderway001 老师获取
+    
+    //api 接口请微信加 coderway001 老师获取
     timeout: 10000
   }) 
 

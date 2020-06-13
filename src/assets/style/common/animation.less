@@ -28,6 +28,16 @@
   transition: opacity .2s;
 }
 
+.pop-enter, .pop-leave-to {
+  transform: translate(100px);
+}
+.pop-enter-active, .pop-leave-active {
+  transition: transform .2s;
+}
+.pop-leave, .pop-enter-to {
+  transform: translate(0px);
+}
+
 
 .list-enter, .list-leave-to {
   opacity: 0;

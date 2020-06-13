@@ -1,16 +1,14 @@
 <template>
-  <!-- <div class="cart-list">  -->
-    <scroll class="scroll" ref="scroll">
-      <cart-list-item v-for="value in cartList" :key="value.iid" :goods="value"  />
-    </scroll>
-  <!-- </div> -->
+  <scroll class="scroll" ref="scroll">
+    <cart-list-item v-for="value in cartList" :key="value.iid" :goods="value" :distance="50" />
+  </scroll>
 </template>
 
 <script>
 import Scroll from 'components/common/scroll/Scroll';
 import CartListItem from './CartListItem';
-
-import { mapGetters } from 'vuex';
+import { storageMixin } from '../../../common/mixin'
+import {  mapGetters ,mapActions } from 'vuex';
 
 export default {
   name: 'CartList',
@@ -21,11 +19,12 @@ export default {
   computed: {
     ...mapGetters([
       'cartList'
-    ]),
+    ])
   },
+  mixins: [storageMixin],
   activated() {
     this.$refs.scroll.refresh();
-  },
+  }
 }
 </script>
 

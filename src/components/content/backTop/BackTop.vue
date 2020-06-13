@@ -13,8 +13,8 @@ export default {
 <style scoped>
 .back-top {
   position: absolute;
-  right: 10px;
-  bottom: 51px;
+  right: 5%;
+  bottom: calc(44px + 5%);
 }
 .back-top .img {
   width: 40px;

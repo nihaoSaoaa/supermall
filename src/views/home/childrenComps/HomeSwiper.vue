@@ -1,5 +1,5 @@
 <template>
-    <swiper :slideCount="banners.length">
+    <swiper :slideCount="banners.length" class="home-swiper">
       <swiper-item v-for="item in banners" :key="item.index">
         <a :href="item.link">
           <img :src="item.image" @load="imgLoad" />
@@ -41,4 +41,7 @@ export default {
 </script>
 
 <style scoped>
+.home-swiper {
+  height: 150px;
+}
 </style>

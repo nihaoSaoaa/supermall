@@ -35,7 +35,7 @@ import BackTop from 'components/content/backTop/BackTop';
 //网络方法
 import { Goods, Shop, GoodsParam, getDetailData, getRecommend } from 'network/detail';
 // 混入
-import { itemListenerMixin, backTopMixin } from "common/mixin";
+import { itemListenerMixin, backTopMixin, storageMixin } from "common/mixin";
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
@@ -69,7 +69,7 @@ export default {
       isBottomClick: false
     }
   },
-  mixins: [itemListenerMixin, backTopMixin],
+  mixins: [itemListenerMixin, backTopMixin, storageMixin],
   created() {
     // 1. 保存传入的iid
     this.iid = this.$route.params.iid;

@@ -23,19 +23,14 @@ export default {
     pullUpLoad: {
       type: Boolean,
       default: false
-    },
-    canScrollX: {
-      type: Boolean,
-      default: false
     }
   },
   // 组件创建并挂载后调用
   mounted() {
     // 创建滚动对象
-    const { canScrollX, probeType, pullUpLoad } = this;
+    const { probeType, pullUpLoad } = this;
     this.scroll = new BScroll(this.$refs.wrapper, {
       click: true,
-      scrollX: canScrollX,
       probeType, //3: 滚动就监听位置，包括惯性滚动
       pullUpLoad,
     })

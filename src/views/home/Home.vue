@@ -144,7 +144,7 @@ export default {
       this.$refs.tabControl1.currentIndex = index;
       this.$refs.tabControl2.currentIndex = index;
       // 使滚动回导航栏 top 位置
-      this.$refs.scroll.scrollTo(0, -this.tabOffsetTop, 0);
+      // this.$refs.scroll.scrollTo(0, -this.tabOffsetTop, 0);
     },
     contentScroll(position) {
       // 1. backTop组件是否显示
